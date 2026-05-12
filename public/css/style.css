@@ -1,0 +1,102 @@
+body{
+    font-family: "Cormorant Garamond", serif !important;
+    font-optical-sizing: auto !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    display: flex;
+    flex-direction: column;
+    min-height:100vh;
+}
+
+.container{
+    flex:1;
+}
+.navbar{
+    height: 4.7rem;
+    background-color: white;
+    font-size: 20px;
+}
+.navbar-brand{
+    width:125px;
+}
+
+.logo{
+    height: 55px;
+    width: auto;
+}
+
+.center{
+  margin-left:27%;
+}
+
+.navbar-nav{
+    gap:10px;
+}
+.nav-link{
+    color:#222222 !important;
+}
+
+footer{
+    height:6rem;
+    display:flex;
+    justify-content: space-between;
+    padding:10px;
+}
+
+.f-info-links a:hover{
+    cursor:pointer;
+    text-decoration: underline !important; 
+}
+.social-media a i:hover{
+    font-size:20px;
+    
+}
+
+.card{
+    border:none !important;
+    margin-bottom:2rem;
+    
+}
+
+.card-img-top{
+    border-radius: 1rem;
+    width:100%;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+    font-size: 20px;
+}
+.listing-link{
+    text-decoration:none;
+}
+
+.card-img-overlay{
+    opacity:0 ;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.show-img{
+    height: 35vh;
+    border-radius: 2px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.btns{
+    display: flex;
+    gap:10px;
+}
+
+.border{
+    border: 2px solid #222222 ;
+}
+
+#map{
+    height: 400px;
+    width:80vh;
+}
