@@ -1,6 +1,17 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listings.js");
+
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapToken = process.env.MAP_TOKEN;
+
+const geocodingClient = mbxGeocoding({
+  accessToken: mapToken,
+});
+
+const dbURL =process.env.ATLASDB_URL;
 
 main().then(()=>{
     console.log("connected to db");

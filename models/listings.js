@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js")
 
-const dbURL =process.env.ATLASDB_URL;
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect(dbURL);
-}
+
 
 const ListingSchema = new mongoose.Schema({
     title:{

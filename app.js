@@ -14,13 +14,12 @@ const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema, reviewSchema}=require("./schema.js");
 const Review = require("./models/review.js");
 const session = require("express-session");
-const MongoStore = require("connect-mongo").default;
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-const crypto = require("crypto");
-global.crypto = crypto;
+
 
 
 const listingsRouter = require("./routes/listing.js");
@@ -49,18 +48,16 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
     mongoUrl: dbURL,
-    crypto:{
-        secret:process.env.SECRET
-    },
+    secret:process.env.SECRET,
     touchAfter: 24 * 3600,
 })
 
-store.on("error",()=>{
+store.on("error",(err)=>{
     console.log("ERROR IN MONGO SESSION STORE", err);
 })
 
 const sessionOptions = {
-    store: store,
+    store,
     secret:process.env.SECRET,
     resave:false,
     saveUninitialized: true,
@@ -95,17 +92,6 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/users", wrapAsync(async(req,res,next)=>{
-// let fakeUser = new User({
-//     email:"student@gmail.com",
-//     username:"student-pakhi",
-// });
-// let reg = await User.register(fakeUser,"akshat04");
-
-// res.send(reg);
-
-// }));
-
 app.use("/listings", listingsRouter);
 
 //reviews
@@ -118,9 +104,10 @@ app.all(/.*/,(req,res,next)=>{
 });
 
 app.use((err,req,res,next)=>{
-   let{statusCode=500,message="something went wrong!"}=err;
-   res.status(statusCode).render("listings/error.ejs",{err});
+   let {statusCode=500,message="something went wrong!"}=err;
+   res.status(statusCode).render("listings/error.ejs",{ message });
 });
+
 
 app.listen(port,()=>{
     console.log("server is listening");

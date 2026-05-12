@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const dbURL =process.env.ATLASDB_URL;
-main().catch(err=>{console.log(err)});
-async function main(){
-    await mongoose.connect(dbURL)
-}
 
 const reviewSchema = new Schema({
     comment: String,
